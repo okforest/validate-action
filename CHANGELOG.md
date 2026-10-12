@@ -1,0 +1,7 @@
+# validate-action
+
+## 1.0.0
+
+### Major Changes
+
+- 2a4c2be: First release: validate an OKF v0.2 tree with `@okforest/validate` 0.2, with annotations on each finding's file and line, a job summary listing every finding, the JSON report as an output, `fail-on` to choose what fails the step, and D2 and Mermaid diagram syntax checks (Mermaid bundled; D2 downloaded on demand and checked against a pinned checksum).
