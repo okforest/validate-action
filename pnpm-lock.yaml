@@ -183,8 +183,8 @@ catalogs:
       specifier: ^0.2.0
       version: 0.2.0
     '@okforest/validate':
-      specifier: ^0.2.0
-      version: 0.2.0
+      specifier: ^0.2.1
+      version: 0.2.1
     '@types/node':
       specifier: ^26.6.5
       version: 26.6.5
@@ -219,7 +219,7 @@ importers:
         version: 0.2.0
       '@okforest/validate':
         specifier: 'catalog:'
-        version: 0.2.0(@d2lang/d2@0.1.34)(mermaid@12.1.0)
+        version: 0.2.1(@d2lang/d2@0.1.34)(mermaid@12.1.0)
       mermaid:
         specifier: 'catalog:'
         version: 12.1.0
@@ -476,8 +476,12 @@ packages:
     resolution: {integrity: sha512-cyfj/MWCJ4nR0V+gluSKj/CoNlC6QZ6O423HA7kQOTj3DRjck4gM4W723Vc8brwE50wvRRMpfrbFj1ZHC3HvdQ==}
     engines: {node: '>=22'}
 
-  '@okforest/validate@0.2.0':
-    resolution: {integrity: sha512-dgJd1z4B3fXWyQi5PSipA3yGs5MmzylivdGLfqbSGG5vKNHGxWesskM29CA1jsyPlLB5wjyeSkwy+VvCkZxAMg==}
+  '@okforest/okf@0.2.1':
+    resolution: {integrity: sha512-ukxIi95bSx19M20DCkKDFQAcbD8vnNSpCQQvCKDTsUloXRMLuICZblNeAkzNHw5Bo0J+GzG4IGNo3OknGudDHA==}
+    engines: {node: '>=22'}
+
+  '@okforest/validate@0.2.1':
+    resolution: {integrity: sha512-/0auc/yd4IM34t0X1G7GExij997Jy17Xl40hUHD8X34Afy2dq64qexa86BEHi0ezw+aeezFjYD+u66NYcfkO2g==}
     engines: {node: '>=22'}
     peerDependencies:
       '@d2lang/d2': ^0.1.34
@@ -2168,9 +2172,19 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@okforest/validate@0.2.0(@d2lang/d2@0.1.34)(mermaid@12.1.0)':
+  '@okforest/okf@0.2.1':
     dependencies:
-      '@okforest/okf': 0.2.0
+      '@types/mdast': 4.0.4
+      mdast-util-from-markdown: 2.1.0
+      mdast-util-gfm-footnote: 2.1.0
+      micromark-extension-gfm-footnote: 2.1.0
+      yaml: 2.9.1
+    transitivePeerDependencies:
+      - supports-color
+
+  '@okforest/validate@0.2.1(@d2lang/d2@0.1.34)(mermaid@12.1.0)':
+    dependencies:
+      '@okforest/okf': 0.2.1
     optionalDependencies:
       '@d2lang/d2': 0.1.34
       mermaid: 12.1.0
