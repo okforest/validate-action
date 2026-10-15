@@ -10,7 +10,12 @@ example-data rules. This file covers this repository.
     pnpm install
     pnpm build && pnpm test && pnpm typecheck && pnpm check
 
-All four gates must pass before a PR; CI runs the same commands. `pnpm
+All four gates must pass before a PR; CI runs the same commands. `main` is
+protected (the "Protect main" ruleset): changes land through pull requests
+once `check` and the three `self-test` jobs pass. Repository admins can
+bypass it, for small direct commits and for merging "Version Packages" PRs,
+whose checks never run (GitHub runs no workflows for PRs that a workflow
+opens). `pnpm
 install` fetches the pinned pnpm and Node versions automatically
 (`packageManager` and `devEngines` in `package.json`).
 
@@ -18,8 +23,8 @@ install` fetches the pinned pnpm and Node versions automatically
 at the tag a workflow names, with no install or build step, so `dist/` is the
 code users run, but it only needs to exist on release tags. It is gitignored
 on `main`: `pnpm build` writes it (plus `dist/licenses.txt`) for local runs and
-CI, whose self-test runs the action on that build, and the Release workflow
-commits it onto each release tag. The same goes for `src/d2-pin.ts`, which
+CI, whose self-test runs the action on that build, and CI's release job
+commits that same build onto each release tag. The same goes for `src/d2-pin.ts`, which
 `pnpm pin` writes from the lockfile.
 
 ## Layout
@@ -49,8 +54,10 @@ commits it onto each release tag. The same goes for `src/d2-pin.ts`, which
 
 Releases go through Changesets: add a changeset (`pnpm changeset`) with your
 change, and merging it to `main` opens a "Version Packages" PR. Merging that
-PR releases the version: the Release workflow builds `dist/`, runs the action
-on `fixtures/clean`, commits `dist/` on top of the merged commit (on no
+PR (an admin bypass, as above) releases the version. CI runs on the merged
+commit, and only when `check` and every `self-test` pass does its release job
+run: it commits the `dist/` artifact that the self-test just ran on Linux,
+macOS, and Windows (not a new build) on top of the merged commit (on no
 branch), tags that commit `v1.2.3`, moves the major tag (`v1`) to it, and
 creates the GitHub Release from the version's `CHANGELOG.md` section. Nothing
 is published to npm.

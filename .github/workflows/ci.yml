@@ -1,15 +1,19 @@
 name: CI
 
+# Every PR and every push to main: build, test, and run the action from that
+# build on Linux, macOS, and Windows. On main, once all of that passes, the
+# release job ships the exact build the self-test ran (see the job).
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
 
-# A newer push to the same branch/PR cancels the in-progress run.
+# A newer push to the same PR cancels its in-progress run. Runs on main are
+# never cancelled: one might be releasing.
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: read
@@ -100,3 +104,80 @@ jobs:
             }
             console.log(`report ok: ${report.findings.length} findings`)
           '
+
+  # Changesets flow: merging changeset files into main opens/updates a
+  # "Version Packages" PR; merging THAT PR releases the version. main never
+  # holds dist/ (it is gitignored). The release commits the dist/ artifact
+  # that the check job built and the self-test ran on every OS (not a new
+  # build) on top of main's commit, on no branch; tags it v1.2.3; moves the
+  # major tag (v1) users pin to; and creates the GitHub Release from the
+  # version's CHANGELOG.md section. Nothing is published to npm: an action
+  # runs from this repository at a tag. The Action is listed on the GitHub
+  # Marketplace, where each new release appears on its own (see
+  # CONTRIBUTING.md).
+  release:
+    needs: [check, self-test]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/setup@v3
+        with:
+          cache: true
+          require-lockfile: true
+
+      - name: Open or update the Version Packages PR
+        id: changesets
+        uses: changesets/action@v2
+
+      # With no changesets left, main's version is released unless its tag
+      # already exists (every push after a release, and Dependabot merges).
+      - name: Check whether this version is released
+        id: version
+        if: steps.changesets.outputs.has-changesets == 'false'
+        run: |
+          VERSION=$(jq -r .version package.json)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          if git ls-remote --exit-code --tags origin "refs/tags/v$VERSION" >/dev/null; then
+            echo "v$VERSION is already released."
+            echo "release=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "release=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Download the tested dist/
+        if: steps.version.outputs.release == 'true'
+        uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist/
+
+      - name: Tag the release, with dist/
+        if: steps.version.outputs.release == 'true'
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add --force dist
+          git commit --quiet -m "v$VERSION: dist/ for the release"
+          git tag "v$VERSION"
+          git push origin "refs/tags/v$VERSION"
+          MAJOR="v${VERSION%%.*}"
+          git tag --force "$MAJOR"
+          git push --force origin "refs/tags/$MAJOR"
+          echo "v$VERSION and $MAJOR point to $(git rev-parse HEAD), on top of $GITHUB_SHA"
+
+      - name: Create the GitHub Release
+        if: steps.version.outputs.release == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          awk -v heading="## $VERSION" '$0 == heading { found = 1; next } found && /^## / { exit } found' \
+            CHANGELOG.md > "$RUNNER_TEMP/notes.md"
+          gh release create "v$VERSION" --verify-tag --title "v$VERSION" --notes-file "$RUNNER_TEMP/notes.md"
