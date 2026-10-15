@@ -1,5 +1,11 @@
 # validate-action
 
+## 1.0.2
+
+### Patch Changes
+
+- 9219eec: Releases are now built from source by the Release workflow: `dist/` is committed only onto each release tag, not to `main`. The action itself is unchanged.
+
 ## 1.0.1
 
 ### Patch Changes
