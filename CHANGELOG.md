@@ -1,5 +1,11 @@
 # validate-action
 
+## 1.1.0
+
+### Minor Changes
+
+- e3d24f5: Findings link to their rule's documentation on www.okforest.ai: the job summary's Rule column links each rule's page, each annotation ends with it, and each finding in the JSON report carries `docs`, its URL. Bundles `@okforest/validate` 0.3.0.
+
 ## 1.0.3
 
 ### Patch Changes
