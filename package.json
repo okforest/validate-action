@@ -1,6 +1,6 @@
 {
   "name": "validate-action",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "GitHub Action that validates Open Knowledge Format (OKF) v0.2 trees with OKForest: annotations on the pull request, a job summary, and a JSON report.",
   "license": "Apache-2.0",
