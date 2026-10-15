@@ -5,8 +5,8 @@ import * as core from "@actions/core"
 import { readTree } from "@okforest/okf/node"
 import {
   type DiagramLoaders,
-  type Finding,
   type MermaidModule,
+  type ReportFinding,
   toReport,
   type ValidationReport,
   validate,
@@ -97,8 +97,10 @@ async function validateTree(options: RunOptions): Promise<void> {
 
 const ANNOTATE = { error: core.error, warning: core.warning, info: core.notice } as const
 
-function annotate(finding: Finding, file: string): void {
-  ANNOTATE[finding.severity](finding.message, {
+/** One annotation per finding, titled with its rule, and ending with the
+ * rule's documentation page. */
+function annotate(finding: ReportFinding, file: string): void {
+  ANNOTATE[finding.severity](`${finding.message}\n\nRule docs: ${finding.docs}`, {
     title: finding.ruleId,
     file,
     ...(finding.line === undefined ? {} : { startLine: finding.line }),

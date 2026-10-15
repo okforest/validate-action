@@ -89,6 +89,11 @@ GitHub keeps at most 10 error, 10 warning, and 10 notice (info) annotations
 per step, and 50 per job. The job summary always lists every finding, linked
 to its line.
 
+Each finding names its rule, which links to the rule's page on
+[www.okforest.ai/docs/rules](https://www.okforest.ai/docs/rules/): from the
+job summary's Rule column, at the end of each annotation, and as `docs` on
+each finding in the JSON report.
+
 ## Versions
 
 `okforest/validate-action@v1` follows the latest 1.x release. Pin a release

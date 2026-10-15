@@ -1,4 +1,4 @@
-import type { Finding, ValidationReport } from "@okforest/validate"
+import type { ReportFinding, ValidationReport } from "@okforest/validate"
 import { findingUrl, type Links } from "./locations.js"
 
 /** Rows beyond this are left to the JSON report (a step summary is capped at 1 MiB). */
@@ -36,7 +36,7 @@ export function summaryMarkdown(
   return `${out.join("\n")}\n`
 }
 
-function row(finding: Finding, path: string, links: Links | undefined): string {
+function row(finding: ReportFinding, path: string, links: Links | undefined): string {
   const position =
     finding.line === undefined
       ? ""
@@ -45,7 +45,9 @@ function row(finding: Finding, path: string, links: Links | undefined): string {
   const url = findingUrl(links, path, finding)
   const location = url ? `[${cell(text)}](${url})` : cell(text)
   const severity = `${ICON[finding.severity]} ${LABEL[finding.severity]}`
-  return `| ${severity} | ${location} | ${cell(finding.message)} | \`${finding.ruleId}\` |`
+  // The rule links to its documentation page on www.okforest.ai.
+  const rule = `[\`${finding.ruleId}\`](${finding.docs})`
+  return `| ${severity} | ${location} | ${cell(finding.message)} | ${rule} |`
 }
 
 /**

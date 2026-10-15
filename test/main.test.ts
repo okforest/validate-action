@@ -75,13 +75,13 @@ describe("the action", () => {
     expect(
       result.stdout.filter((line) => line.startsWith("::") && !line.startsWith("::debug")),
     ).toEqual([
-      "::warning title=okf/description,file=fixtures/broken/diagrams.md,line=1,col=1::No `description`: index entries, search snippets, and previews use it.",
-      "::error title=okforest/d2-syntax,file=fixtures/broken/diagrams.md,line=10,col=1::D2 syntax error: connection missing destination",
-      "::error title=okforest/d2-syntax,file=fixtures/broken/diagrams.md,line=10,col=8::D2 syntax error: maps must be terminated with }",
-      "::error title=okforest/mermaid-syntax,file=fixtures/broken/diagrams.md,line=15,col=1::Mermaid syntax error: Parse error on line 3: Expecting 'AMP', 'COLON', 'PIPE', 'TESTSTR', ..., got 'EOF'",
-      "::warning title=okf/broken-link,file=fixtures/broken/diagrams.md,line=18,col=10::`missing.md` does not exist in this tree.",
-      "::warning title=okf/description,file=fixtures/broken/no-type.md,line=1,col=1::No `description`: index entries, search snippets, and previews use it.",
-      "::error title=okf/type,file=fixtures/broken/no-type.md,line=1,col=1::Missing `type`, the one required key.",
+      "::warning title=okf/description,file=fixtures/broken/diagrams.md,line=1,col=1::No `description`: index entries, search snippets, and previews use it.%0A%0ARule docs: https://www.okforest.ai/docs/rules/okf/description/",
+      "::error title=okforest/d2-syntax,file=fixtures/broken/diagrams.md,line=10,col=1::D2 syntax error: connection missing destination%0A%0ARule docs: https://www.okforest.ai/docs/rules/okforest/d2-syntax/",
+      "::error title=okforest/d2-syntax,file=fixtures/broken/diagrams.md,line=10,col=8::D2 syntax error: maps must be terminated with }%0A%0ARule docs: https://www.okforest.ai/docs/rules/okforest/d2-syntax/",
+      "::error title=okforest/mermaid-syntax,file=fixtures/broken/diagrams.md,line=15,col=1::Mermaid syntax error: Parse error on line 3: Expecting 'AMP', 'COLON', 'PIPE', 'TESTSTR', ..., got 'EOF'%0A%0ARule docs: https://www.okforest.ai/docs/rules/okforest/mermaid-syntax/",
+      "::warning title=okf/broken-link,file=fixtures/broken/diagrams.md,line=18,col=10::`missing.md` does not exist in this tree.%0A%0ARule docs: https://www.okforest.ai/docs/rules/okf/broken-link/",
+      "::warning title=okf/description,file=fixtures/broken/no-type.md,line=1,col=1::No `description`: index entries, search snippets, and previews use it.%0A%0ARule docs: https://www.okforest.ai/docs/rules/okf/description/",
+      "::error title=okf/type,file=fixtures/broken/no-type.md,line=1,col=1::Missing `type`, the one required key.%0A%0ARule docs: https://www.okforest.ai/docs/rules/okf/type/",
       "::error::OKForest found 4 errors in fixtures/broken.",
     ])
     expect(result.stdout).toContain(
@@ -106,6 +106,7 @@ describe("the action", () => {
     expect(result.summary).toContain(
       "[fixtures/broken/no-type.md:1:1](https://github.com/acme/knowledge/blob/abc123/fixtures/broken/no-type.md#L1)",
     )
+    expect(result.summary).toContain("[`okf/type`](https://www.okforest.ai/docs/rules/okf/type/)")
   })
 
   it("passes a clean tree", async () => {

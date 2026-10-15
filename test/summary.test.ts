@@ -1,4 +1,4 @@
-import type { Finding, ValidationReport } from "@okforest/validate"
+import { type Finding, ruleUrl, type ValidationReport } from "@okforest/validate"
 import { cell, summaryMarkdown } from "../src/summary.js"
 
 const report = (findings: Finding[]): ValidationReport => ({
@@ -13,7 +13,7 @@ const report = (findings: Finding[]): ValidationReport => ({
     concepts: 3,
     files: 4,
   },
-  findings,
+  findings: findings.map((f) => ({ ...f, docs: ruleUrl(f.ruleId) })),
 })
 
 const toWorkspace = (file: string) => `docs/${file}`
@@ -61,9 +61,9 @@ describe("summaryMarkdown", () => {
         "",
         "| | Location | Finding | Rule |",
         "|---|---|---|---|",
-        "| ❌ Error | [docs/a.md:1:1](https://github.com/acme/knowledge/blob/abc123/docs/a.md#L1) | Missing `type`. | `okf/type` |",
-        "| ⚠️ Warning | [docs/a.md:9](https://github.com/acme/knowledge/blob/abc123/docs/a.md#L9) | `b.md` does not exist. | `okf/broken-link` |",
-        "| ℹ️ Info | [docs/index.md](https://github.com/acme/knowledge/blob/abc123/docs/index.md) | Declare the OKF version. | `okf/okf-version` |",
+        "| ❌ Error | [docs/a.md:1:1](https://github.com/acme/knowledge/blob/abc123/docs/a.md#L1) | Missing `type`. | [`okf/type`](https://www.okforest.ai/docs/rules/okf/type/) |",
+        "| ⚠️ Warning | [docs/a.md:9](https://github.com/acme/knowledge/blob/abc123/docs/a.md#L9) | `b.md` does not exist. | [`okf/broken-link`](https://www.okforest.ai/docs/rules/okf/broken-link/) |",
+        "| ℹ️ Info | [docs/index.md](https://github.com/acme/knowledge/blob/abc123/docs/index.md) | Declare the OKF version. | [`okf/okf-version`](https://www.okforest.ai/docs/rules/okf/okf-version/) |",
         "",
       ].join("\n"),
     )
