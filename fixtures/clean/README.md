@@ -1,3 +1,3 @@
 # Example tree
 
-Repository files are not concepts.
+Ignored by .okforest/settings.yaml: repository files are not concepts.

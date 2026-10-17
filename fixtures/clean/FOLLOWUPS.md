@@ -1,3 +1,3 @@
 # Follow-ups
 
-Ignored by .okforest/tree.yaml.
+Ignored by .okforest/settings.yaml.

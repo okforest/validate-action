@@ -1,0 +1,5 @@
+name: Example knowledge
+description: A clean tree that exercises every family of rules.
+ignore:
+  - README.md
+  - FOLLOWUPS.md

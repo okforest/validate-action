@@ -180,11 +180,11 @@ catalogs:
       specifier: 0.1.34
       version: 0.1.34
     '@okforest/okf':
-      specifier: ^0.4.0
-      version: 0.4.0
+      specifier: ^0.5.0
+      version: 0.5.0
     '@okforest/validate':
-      specifier: ^0.4.0
-      version: 0.4.0
+      specifier: ^0.5.0
+      version: 0.5.0
     '@types/node':
       specifier: ^26.6.5
       version: 26.6.5
@@ -216,10 +216,10 @@ importers:
         version: 4.0.0
       '@okforest/okf':
         specifier: 'catalog:'
-        version: 0.4.0
+        version: 0.5.0
       '@okforest/validate':
         specifier: 'catalog:'
-        version: 0.4.0(@d2lang/d2@0.1.34)(mermaid@12.2.0)
+        version: 0.5.0(@d2lang/d2@0.1.34)(mermaid@12.2.0)
       mermaid:
         specifier: 'catalog:'
         version: 12.2.0
@@ -472,12 +472,12 @@ packages:
     resolution: {integrity: sha512-j37dj/h6p6pots1L7pLPPNuABEEu9WP4OYg9pW1g+nYG331j0+3canE9OagtYdytYvdSAMG+2fKU5cxep6LgjA==}
     engines: {node: '>=22.12.0'}
 
-  '@okforest/okf@0.4.0':
-    resolution: {integrity: sha512-+zYeBzl7PKgJCyhztUUR6G8Bzwm/W0zktDpzil9BUkXelaq/8LYykoG3mvJuJCOuegEagDVIqX/XylzKBrDqaQ==}
+  '@okforest/okf@0.5.0':
+    resolution: {integrity: sha512-tMsQyywolzvNeWlYurT39b3irTaW0Nj7fsy3GXOlpl1vUJ/4OvdpT4NsFmybhJDO0KMrCmfuZNlzN1aQbu6cOw==}
     engines: {node: '>=22'}
 
-  '@okforest/validate@0.4.0':
-    resolution: {integrity: sha512-8e+XyjjlhFG8LmjYhbN/SaHcnpEHZ8gzyPTsXiJdQBE54DgAWqNdMTnMmyCEoqf3Xv0SMbYhTw4eN2XZyYjQ2g==}
+  '@okforest/validate@0.5.0':
+    resolution: {integrity: sha512-JTd3y7llSPY4McnLjKLKuJNiszOlVliVswM2IFbl8vVghkhUaaD+Y3JFXa3eP3TXhnts9FnA0v6i4zbJ3keeqw==}
     engines: {node: '>=22'}
     peerDependencies:
       '@d2lang/d2': ^0.1.34
@@ -2154,7 +2154,7 @@ snapshots:
     dependencies:
       '@chevrotain/types': 13.2.0
 
-  '@okforest/okf@0.4.0':
+  '@okforest/okf@0.5.0':
     dependencies:
       '@types/mdast': 4.0.4
       mdast-util-from-markdown: 2.1.0
@@ -2164,9 +2164,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@okforest/validate@0.4.0(@d2lang/d2@0.1.34)(mermaid@12.2.0)':
+  '@okforest/validate@0.5.0(@d2lang/d2@0.1.34)(mermaid@12.2.0)':
     dependencies:
-      '@okforest/okf': 0.4.0
+      '@okforest/okf': 0.5.0
     optionalDependencies:
       '@d2lang/d2': 0.1.34
       mermaid: 12.2.0
