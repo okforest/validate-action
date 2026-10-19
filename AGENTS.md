@@ -18,12 +18,12 @@ outputs, annotations, the job summary, and the D2 download.
 - The JSON report comes from `toReport()` in `@okforest/validate`, so it is
   the same document as `okforest validate --format json`. Don't add fields
   here; change the shared report in okforest/cli.
-- Inputs and outputs in `action.yml` are a public interface: removing or
+- Inputs and outputs in `action.yaml` are a public interface: removing or
   renaming one, or failing in new cases, needs a major version.
 - Examples use reserved domains (`acme.example`) and placeholder names.
 - Releases go through Changesets (`pnpm changeset`); tags are `v1.2.3` plus
   a moving `v1`, each on a release commit that adds the tested `dist/` to
-  the merged commit (the `release` job in `.github/workflows/ci.yml`, which
+  the merged commit (the `release` job in `.github/workflows/ci.yaml`, which
   needs every check to pass). Dependency updates reach users only with a
   changeset. `main` is protected by a ruleset (PRs with passing checks;
   admins can bypass).

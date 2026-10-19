@@ -1,6 +1,6 @@
 # OKForest Validate
 
-[![CI](https://github.com/okforest/validate-action/actions/workflows/ci.yml/badge.svg)](https://github.com/okforest/validate-action/actions/workflows/ci.yml)
+[![CI](https://github.com/okforest/validate-action/actions/workflows/ci.yaml/badge.svg)](https://github.com/okforest/validate-action/actions/workflows/ci.yaml)
 [![Coverage](https://codecov.io/gh/okforest/validate-action/graph/badge.svg)](https://codecov.io/gh/okforest/validate-action)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-green)](./LICENSE)
 
@@ -12,7 +12,7 @@ It runs [`@okforest/validate`](https://github.com/okforest/cli/tree/main/package
 the same rules as `npx okforest validate`.
 
 ```yaml
-# .github/workflows/okforest-validate.yml
+# .github/workflows/okforest-validate.yaml
 name: OKForest Validate
 
 on:

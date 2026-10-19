@@ -11,7 +11,7 @@ export interface Inputs {
 
 const FAIL_ON: readonly FailOn[] = ["error", "warning", "never"]
 
-/** Read and check the inputs declared in action.yml. */
+/** Read and check the inputs declared in action.yaml. */
 export function readInputs(getInput: (name: string) => string): Inputs {
   const failOn = getInput("fail-on").trim() || "error"
   if (!FAIL_ON.includes(failOn as FailOn)) {

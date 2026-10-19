@@ -31,7 +31,7 @@ commits that same build onto each release tag. The same goes for `src/d2-pin.ts`
 
 | Path | What it is |
 |---|---|
-| `action.yml` | The action's inputs, outputs, and runtime (`node24`, `dist/index.js`). |
+| `action.yaml` | The action's inputs, outputs, and runtime (`node24`, `dist/index.js`). |
 | `src/main.ts` | The run: read the tree, validate, then outputs, annotations, the job summary, and pass or fail. |
 | `src/d2.ts`, `src/d2-pin.ts` | D2 downloaded on demand and checked against the checksum `pnpm pin` writes from the lockfile (gitignored). |
 | `src/summary.ts`, `src/locations.ts` | The job summary, and workspace paths and links for findings. |
