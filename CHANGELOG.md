@@ -1,5 +1,16 @@
 # validate-action
 
+## 1.3.1
+
+### Patch Changes
+
+- 3ac8c71: Bundles `@okforest/validate` 0.6.0. The rules and their findings are
+  unchanged; each rule's documentation page, which every annotation links to,
+  now explains why the rule exists, with an example and its fix.
+- 23ba327: Bundles `@okforest/validate` 0.6.1, the same rules release as the OKForest
+  CLI; the rules and their findings are unchanged. The README's example
+  workflow is `okforest-validate.yaml`, matching what `okforest init` writes.
+
 ## 1.3.0
 
 ### Minor Changes
