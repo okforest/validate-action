@@ -4,17 +4,17 @@ catalog:
   "@actions/core": ^3.0.1
   "@actions/tool-cache": ^4.0.0
   # Exact, not caret, per https://biomejs.dev/internals/versioning/.
-  "@biomejs/biome": 2.5.15
+  "@biomejs/biome": 2.6.3
   "@changesets/cli": ^3.0.3
   # Exact: D2 is not bundled but downloaded at run time; `pnpm build` pins
   # this version and its lockfile checksum into src/d2-pin.ts.
   "@d2lang/d2": 0.1.34
-  "@okforest/okf": ^0.6.1
-  "@okforest/validate": ^0.6.1
+  "@okforest/okf": ^0.7.0
+  "@okforest/validate": ^0.7.0
   "@types/node": ^26.6.5
   "@vitest/coverage-v8": ^5.0.5
   mermaid: ^12.2.0
-  tsdown: ^0.23.0
+  tsdown: ^0.23.2
   typescript: ^7.0.2
   vitest: ^5.0.5
 
