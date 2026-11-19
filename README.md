@@ -36,13 +36,13 @@ Windows runners.
 
 ## Inputs
 
-| Input | Default | What it does |
-|---|---|---|
-| `path` | `.` | The tree's root folder, relative to the workspace. |
-| `fail-on` | `error` | What fails the step: `error`, `warning` (errors or warnings), or `never` (report only). |
-| `diagrams` | `true` | Check D2 and Mermaid diagram syntax. `false` skips the checks. |
-| `annotations` | `true` | Annotate each finding on its file and line. |
-| `summary` | `true` | List every finding in the job summary. |
+| Input         | Default | What it does                                                                            |
+| ------------- | ------- | --------------------------------------------------------------------------------------- |
+| `path`        | `.`     | The tree's root folder, relative to the workspace.                                      |
+| `fail-on`     | `error` | What fails the step: `error`, `warning` (errors or warnings), or `never` (report only). |
+| `diagrams`    | `true`  | Check D2 and Mermaid diagram syntax. `false` skips the checks.                          |
+| `annotations` | `true`  | Annotate each finding on its file and line.                                             |
+| `summary`     | `true`  | List every finding in the job summary.                                                  |
 
 Warnings and info never fail the step by default. A conformant tree with, say,
 a broken link still passes: the OKF specification says never to reject a bundle
@@ -50,24 +50,24 @@ for that.
 
 ## Outputs
 
-| Output | What it is |
-|---|---|
-| `ok` | `true` when there are no errors (warnings and info allowed). |
-| `errors`, `warnings`, `infos` | How many findings of each severity. |
-| `report` | Path to the JSON report: the same document as `okforest validate --format json` (schema version 1). |
+| Output                        | What it is                                                                                          |
+| ----------------------------- | --------------------------------------------------------------------------------------------------- |
+| `ok`                          | `true` when there are no errors (warnings and info allowed).                                        |
+| `errors`, `warnings`, `infos` | How many findings of each severity.                                                                 |
+| `report`                      | Path to the JSON report: the same document as `okforest validate --format json` (schema version 1). |
 
 For example, to keep the report with the run:
 
 ```yaml
-      - uses: okforest/validate-action@v1
-        id: okf
-        with:
-          path: knowledge
-          fail-on: never
-      - uses: actions/upload-artifact@v7
-        with:
-          name: okf-report
-          path: ${{ steps.okf.outputs.report }}
+- uses: okforest/validate-action@v1
+  id: okf
+  with:
+    path: knowledge
+    fail-on: never
+- uses: actions/upload-artifact@v7
+  with:
+    name: okf-report
+    path: ${{ steps.okf.outputs.report }}
 ```
 
 ## Diagram checks

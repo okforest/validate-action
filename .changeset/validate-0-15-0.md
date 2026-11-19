@@ -12,4 +12,6 @@ Bundles `@okforest/validate` 0.15.0 (was 0.6.1), the same rules as the OKForest 
 - `okf/index-entries` reports an index that lists nothing only when its directory holds something to list.
 - `.okforest/settings.yaml` gains `diagrams` (`diagrams.mermaid.renderer`), checked by `okforest/settings` and `okforest/settings-keys`.
 
+Mermaid diagrams are checked with Mermaid 12.3 (was 12.2).
+
 A run can fail where it passed before only when a tree has type schemas its concepts don't match. Released as a minor version: OKForest is pre-launch.
