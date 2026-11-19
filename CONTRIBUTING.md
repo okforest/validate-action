@@ -29,14 +29,14 @@ commits that same build onto each release tag. The same goes for `src/d2-pin.ts`
 
 ## Layout
 
-| Path | What it is |
-|---|---|
-| `action.yaml` | The action's inputs, outputs, and runtime (`node24`, `dist/index.js`). |
-| `src/main.ts` | The run: read the tree, validate, then outputs, annotations, the job summary, and pass or fail. |
-| `src/d2.ts`, `src/d2-pin.ts` | D2 downloaded on demand and checked against the checksum `pnpm pin` writes from the lockfile (gitignored). |
-| `src/summary.ts`, `src/locations.ts` | The job summary, and workspace paths and links for findings. |
-| `dist/` | The generated bundle GitHub runs: gitignored, built by `pnpm build`, committed only onto release tags. |
-| `fixtures/clean`, `fixtures/broken` | Trees the CI self-test runs the action on, on Linux, macOS, and Windows. |
+| Path                                 | What it is                                                                                                 |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| `action.yaml`                        | The action's inputs, outputs, and runtime (`node24`, `dist/index.js`).                                     |
+| `src/main.ts`                        | The run: read the tree, validate, then outputs, annotations, the job summary, and pass or fail.            |
+| `src/d2.ts`, `src/d2-pin.ts`         | D2 downloaded on demand and checked against the checksum `pnpm pin` writes from the lockfile (gitignored). |
+| `src/summary.ts`, `src/locations.ts` | The job summary, and workspace paths and links for findings.                                               |
+| `dist/`                              | The generated bundle GitHub runs: gitignored, built by `pnpm build`, committed only onto release tags.     |
+| `fixtures/clean`, `fixtures/broken`  | Trees the CI self-test runs the action on, on Linux, macOS, and Windows.                                   |
 
 ## Updating dependencies
 

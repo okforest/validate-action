@@ -4,10 +4,19 @@
 
   // Respect .gitignore (skips node_modules/, coverage/, dist/, the generated
   // D2 pin, etc.). Fixtures are data, not source: hand-made trees are kept
-  // byte-for-byte.
+  // byte-for-byte. pnpm and Changesets own the formatting of the lockfile,
+  // changesets, and the changelog.
   "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
   "files": {
-    "includes": ["**", "!dist", "!.claude", "!fixtures"]
+    "includes": [
+      "**",
+      "!dist",
+      "!.claude",
+      "!fixtures",
+      "!pnpm-lock.yaml",
+      "!CHANGELOG.md",
+      "!.changeset/*.md"
+    ]
   },
 
   "assist": {
