@@ -80,18 +80,19 @@ describe("the action", () => {
       "::error title=okforest/d2-syntax,file=fixtures/broken/diagrams.md,line=10,col=8::D2 syntax error: maps must be terminated with }%0A%0ARule docs: https://www.okforest.ai/docs/rules/okforest/d2-syntax/",
       "::error title=okforest/mermaid-syntax,file=fixtures/broken/diagrams.md,line=15,col=1::Mermaid syntax error: Parse error on line 3: Expecting 'AMP', 'COLON', 'PIPE', 'TESTSTR', ..., got 'EOF'%0A%0ARule docs: https://www.okforest.ai/docs/rules/okforest/mermaid-syntax/",
       "::warning title=okf/broken-link,file=fixtures/broken/diagrams.md,line=18,col=10::`missing.md` does not exist in this tree.%0A%0ARule docs: https://www.okforest.ai/docs/rules/okf/broken-link/",
+      "::warning title=okforest/okf-version-current,file=fixtures/broken/index.md,line=2,col=1::This tree declares OKF 0.2; 0.3 is current. Move when you're ready: declare `okf_version: \"0.3\"` and fix what's then reported (what changed: https://github.com/open-knowledge-format/open-knowledge-format/blob/main/SPEC.md#13-changes-from-v02).%0A%0ARule docs: https://www.okforest.ai/docs/rules/okforest/okf-version-current/",
       "::warning title=okf/description,file=fixtures/broken/no-type.md,line=1,col=1::No `description`: index entries, search snippets, and previews use it.%0A%0ARule docs: https://www.okforest.ai/docs/rules/okf/description/",
       "::error title=okf/type,file=fixtures/broken/no-type.md,line=1,col=1::Missing `type`, the one required key.%0A%0ARule docs: https://www.okforest.ai/docs/rules/okf/type/",
       "::error::OKForest found 4 errors in fixtures/broken.",
     ])
     expect(result.stdout).toContain(
-      "4 errors, 3 warnings, and 0 info in fixtures/broken (2 concepts, 3 files)",
+      "4 errors, 4 warnings, and 0 info in fixtures/broken (2 concepts, 3 files)",
     )
     expect(result.exitCode).toBe(1)
     expect(result.outputs).toEqual({
       ok: "false",
       errors: "4",
-      warnings: "3",
+      warnings: "4",
       infos: "0",
       report: join(process.env.RUNNER_TEMP ?? "", "okforest-validate", "__okforest_validate.json"),
     })
@@ -99,10 +100,10 @@ describe("the action", () => {
       schemaVersion: 1,
       tool: TOOL,
       path: "fixtures/broken",
-      summary: { ok: false, errors: 4, warnings: 3, infos: 0, concepts: 2, files: 3 },
+      summary: { ok: false, errors: 4, warnings: 4, infos: 0, concepts: 2, files: 3 },
     })
-    expect(result.report.findings).toHaveLength(7)
-    expect(result.summary).toContain("❌ 4 errors, 3 warnings, 0 info · 2 concepts in 3 files")
+    expect(result.report.findings).toHaveLength(8)
+    expect(result.summary).toContain("❌ 4 errors, 4 warnings, 0 info · 2 concepts in 3 files")
     expect(result.summary).toContain(
       "[fixtures/broken/no-type.md:1:1](https://github.com/acme/knowledge/blob/abc123/fixtures/broken/no-type.md#L1)",
     )

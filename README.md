@@ -4,9 +4,10 @@
 [![Coverage](https://codecov.io/gh/okforest/validate-action/graph/badge.svg)](https://codecov.io/gh/okforest/validate-action)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-green)](./LICENSE)
 
-A GitHub Action that validates [Open Knowledge Format (OKF)](https://github.com/GoogleCloudPlatform/open-knowledge-format)
-v0.2 trees on every pull request: the OKF specification, OKForest
-conventions, and D2 and Mermaid diagram syntax. Each finding is annotated on
+A GitHub Action that validates [Open Knowledge Format (OKF)](https://github.com/open-knowledge-format/open-knowledge-format)
+trees on every pull request: the OKF specification, by the version each tree
+declares (0.2 or 0.3), OKForest conventions, and D2 and Mermaid diagram
+syntax. Each finding is annotated on
 its file and line, the job summary lists them all, and errors fail the check.
 It runs [`@okforest/validate`](https://github.com/okforest/cli/tree/main/packages/validate),
 the same rules as `npx okforest validate`.
