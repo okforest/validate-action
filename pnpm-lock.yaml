@@ -180,11 +180,11 @@ catalogs:
       specifier: 0.1.34
       version: 0.1.34
     '@okforest/okf':
-      specifier: ^0.6.1
-      version: 0.6.1
+      specifier: ^0.15.0
+      version: 0.15.0
     '@okforest/validate':
-      specifier: ^0.6.1
-      version: 0.6.1
+      specifier: ^0.15.0
+      version: 0.15.0
     '@types/node':
       specifier: ^26.6.5
       version: 26.6.5
@@ -216,10 +216,10 @@ importers:
         version: 4.0.0
       '@okforest/okf':
         specifier: 'catalog:'
-        version: 0.6.1
+        version: 0.15.0
       '@okforest/validate':
         specifier: 'catalog:'
-        version: 0.6.1(@d2lang/d2@0.1.34)(mermaid@12.2.0)
+        version: 0.15.0(@d2lang/d2@0.1.34)(mermaid@12.2.0)
       mermaid:
         specifier: 'catalog:'
         version: 12.2.0
@@ -353,6 +353,9 @@ packages:
   '@braintree/sanitize-url@7.1.2':
     resolution: {integrity: sha512-jigsZK+sMF/cuiB7sERuo9V7N9jx+dhmHHnQyDSVdpZwVutaBu7WvNYqMDLSgFgfB30n452TP3vjDAvFC973mA==}
 
+  '@cfworker/json-schema@4.1.6':
+    resolution: {integrity: sha512-YzVGTHXf4bzlyAL5KAvHYCdNbbt6zM5cYkAgxqxQPDQM6aZ4ShIIN5yJ+6q7YeonnevxT8k/LmD2tJi/jOiKkg==}
+
   '@changesets/apply-release-plan@8.1.1':
     resolution: {integrity: sha512-nk2Hbq3M9NeHMdaIRBDvawKrQJzXB9sGyBUE5yWnIKtvdcNCPj75zBekJYr0gTT2ecJH3eFeTrc8eisPImcv0Q==}
     engines: {node: ^22.11 || ^24 || >=26}
@@ -472,16 +475,16 @@ packages:
     resolution: {integrity: sha512-j37dj/h6p6pots1L7pLPPNuABEEu9WP4OYg9pW1g+nYG331j0+3canE9OagtYdytYvdSAMG+2fKU5cxep6LgjA==}
     engines: {node: '>=22.12.0'}
 
-  '@okforest/okf@0.6.1':
-    resolution: {integrity: sha512-VfqMCs+EjZO7yiVckedy3tiSZKx5PZoQLGtLrTwJrsLtnKc3Maacbmpe1VSkODDRCS0yb7fYT5TKYYWUDXVsng==}
+  '@okforest/okf@0.15.0':
+    resolution: {integrity: sha512-5PhBkFEcodfoRQbNVR0Gw4zd9MEuW0rvVWnT9ewQ/RiV40eFY6Pe3fOGI3RC9tCmER+cKbtfH54T/oVDm9NdyA==}
     engines: {node: '>=22'}
 
-  '@okforest/validate@0.6.1':
-    resolution: {integrity: sha512-BoIb/WjqhqiU9AZWYE4b5r3BfKsr4i3s0jOKvg+fkfhJ8DIGkEcXRvcfVJ3d1OKomenXIqg1Nuhv2MhnVTZGKw==}
+  '@okforest/validate@0.15.0':
+    resolution: {integrity: sha512-g38ta6CRmV0tWtTnsGayTbJ20UTaUBcfeI++IaP4Yme/GAyOImPk8d3LWKvcM1q9oICmX7eoItu0Rq/JEs2zCQ==}
     engines: {node: '>=22'}
     peerDependencies:
       '@d2lang/d2': ^0.1.34
-      mermaid: ^12.2.0
+      mermaid: ^12.3.0
     peerDependenciesMeta:
       '@d2lang/d2':
         optional: true
@@ -1985,6 +1988,8 @@ snapshots:
 
   '@braintree/sanitize-url@7.1.2': {}
 
+  '@cfworker/json-schema@4.1.6': {}
+
   '@changesets/apply-release-plan@8.1.1':
     dependencies:
       '@changesets/config': 4.0.1
@@ -2154,7 +2159,7 @@ snapshots:
     dependencies:
       '@chevrotain/types': 13.2.0
 
-  '@okforest/okf@0.6.1':
+  '@okforest/okf@0.15.0':
     dependencies:
       '@types/mdast': 4.0.4
       mdast-util-from-markdown: 2.1.0
@@ -2164,9 +2169,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@okforest/validate@0.6.1(@d2lang/d2@0.1.34)(mermaid@12.2.0)':
+  '@okforest/validate@0.15.0(@d2lang/d2@0.1.34)(mermaid@12.2.0)':
     dependencies:
-      '@okforest/okf': 0.6.1
+      '@cfworker/json-schema': 4.1.6
+      '@okforest/okf': 0.15.0
     optionalDependencies:
       '@d2lang/d2': 0.1.34
       mermaid: 12.2.0
