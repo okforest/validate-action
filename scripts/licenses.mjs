@@ -1,14 +1,16 @@
 // Writes dist/licenses.txt: the license of every third-party package bundled
 // into dist/, as the licenses of most of them require when redistributing.
-// The bundler marks each module with a `//#region <path>` comment, so the
-// list is exactly what dist/ contains, not every production dependency.
+// The bundler marks each module with a comment naming its path (`// <path>`,
+// or `//#region <path>` from older tsdown), so the list is exactly what dist/
+// contains, not every production dependency.
 import { readdirSync, readFileSync, writeFileSync } from "node:fs"
 import { join } from "node:path"
 import { fileURLToPath } from "node:url"
 
 const dist = new URL("../dist/", import.meta.url)
 const root = new URL("../", import.meta.url)
-const REGION = /^\/\/#region (node_modules\/\.pnpm\/[^/]+\/node_modules\/(?:@[^/]+\/)?[^/]+)\//gm
+const REGION =
+  /^\/\/(?:#region)? ?(node_modules\/\.pnpm\/[^/]+\/node_modules\/(?:@[^/]+\/)?[^/]+)\//gm
 
 const packages = new Map()
 for (const file of readdirSync(dist)) {
@@ -17,6 +19,12 @@ for (const file of readdirSync(dist)) {
     const manifest = JSON.parse(readFileSync(new URL(`${dir}/package.json`, root), "utf8"))
     packages.set(`${manifest.name}@${manifest.version}`, { dir, manifest })
   }
+}
+
+// No packages means the markers changed again, not that nothing is bundled.
+if (packages.size === 0) {
+  console.error("dist/licenses.txt: no bundled packages found; check the bundler's module comments")
+  process.exit(1)
 }
 
 const LICENSE_FILE = /^(licen[cs]e|copying|notice)(\.(md|txt))?$/i
